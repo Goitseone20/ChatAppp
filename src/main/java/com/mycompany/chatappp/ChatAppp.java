@@ -8,12 +8,11 @@ import java.util.Scanner;
  *
  * @author Tshireletso
  */
-class Login{
-    
-}
+
 public class ChatAppp {
 
     public static void main(String[] args) {
         
     }
 }
+
