@@ -16,14 +16,35 @@ public class testChatApp {
     
     @Test
     public void checkUserNameiscorrect(){
-        L
+        Login user=new Login();
+        assertTrue(user.checkUserName("kyl_1"));
+        
     }
-
+    @Test
+    public void checkUserNameisIncorrect(){
+      Login user=new Login();
+      assertFalse(user.checkUserName("kyle!!!!!!!!"));
+    }
+    @Test
+    public void checkPasswordiscorrect(){
+        Login user=new Login();
+        assertTrue(user.checkPassword("Ch&&sec@ke99!"));
+    }
+    @Test
+     public void checkPasswordisIncorrect(){
+     Login user=new Login();
+     assertFalse(user.checkPassword("password"));
    
+             }
+     @Test
+     public void checkCellphoneiscorrect(){
+         Login user=new Login();
+         assertTrue(user.checkCellphone("+27838968976"));
+         
+     }
+     @Test
+     public void checkCellphoneisIncorrect(){
+         Login user=new Login();
+         assertFalse(user.checkCellphone("0896653"));    }
     
-    // TODO add test methods here.
-    // The methods must be annotated with annotation @Test. For example:
-    //
-    // @Test
-    // public void hello() {}
 }
