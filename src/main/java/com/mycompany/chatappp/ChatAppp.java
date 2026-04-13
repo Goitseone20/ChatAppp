@@ -12,6 +12,8 @@ import java.util.Scanner;
 public class ChatAppp {
 
     public static void main(String[] args) {
+        Login user=new Login();
+        user.register();
         
     }
 }

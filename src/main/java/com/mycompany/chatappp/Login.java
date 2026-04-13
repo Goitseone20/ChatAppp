@@ -23,7 +23,7 @@ public class Login {
         System.out.println("Enter Cellphone");
         String storedCellphone=input.nextLine();
         checkCellphone(storedCellphone);
-        
+        registeruser(storedUserName, storedPassword);
         Login(storedUserName,storedPassword);  
     }
     boolean checkUserName(String UserName){
@@ -55,9 +55,7 @@ public class Login {
            System.out.println("Cellphone number incorrectly formatted or does not contain international code");
            return false;
     }
-        
-    
-}
+    }
     public String registeruser(String storedUserName, String storedPassword){
         
         if (checkUserName(storedUserName) &&checkPassword(storedPassword)){
