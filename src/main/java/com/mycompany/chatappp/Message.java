@@ -5,7 +5,10 @@
 package com.mycompany.chatappp;
 import java.util.Scanner;
 import java.util.Random;
-import org.json.simple.JSONObject;
+import java.io.FileWriter;
+import java.io.IOException;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 /**
  *
  * @author Tshireletso
@@ -16,6 +19,7 @@ public class Message {
    
        Scanner input= new Scanner(System.in);
        Random random=new Random();
+       
        String option;
        String Option1=null, Option2=null, Option3=null;
        int totalmessages;
@@ -23,10 +27,14 @@ public class Message {
        String recipient;
        String messageText;
        long messageID;
+       int counter;
        
        void Messages(){
        
+       
+       
     System.out.println("Welcome to QuickChat.");
+           
     
     do{
     System.out.println("Please select an option (1-3): ");
@@ -36,11 +44,9 @@ public class Message {
     System.out.println("Option 3) Quit");
     
      option= Integer.toString(input.nextInt());
+   
      
-  }
-    while{
-               
-          if(option==Option1) {
+         if(option==Option1) {
             System.out.println("Send Message");
           }
           else if(option==Option2){
@@ -52,19 +58,41 @@ public class Message {
           else{
               System.out.println("Invalid option, please choose option 1-3");
           }
-       }
-    System.out.println("How many messages do you want to enter?");
-    totalmessages=input.nextInt();
+         
     
+    
+    }
+    }
+
+       
+    int createmessage(){
+     System.out.println("How many messages do you want to enter?");
+    totalmessages=input.nextInt();
+       
     for(count=0; count<totalmessages; count++){
         System.out.println("the total number of messages is"+count+"of"+totalmessages+"_____");
     }
+    return totalmessages;
+    
+    
+  }
+    
+    String createcellphone(){
     System.out.println("Enter recipient cellphone number including international code and max of 10 charchters");
     recipient=input.nextLine();
+    return recipient;
+   
+ }
     
+    String createmessagetext(){
     System.out.println("Enter your message text");
     messageText=input.nextLine();
-       }
+    return messageText;
+    
+ }
+    
+    
+    
        long MessageID(){
     System.out.println("Enter message id");
     long ID=1_000_000_000L+(long)Math.random()*9000000000L;
@@ -106,13 +134,15 @@ public class Message {
           return recipientcell;
        }
        int returnTotalMessages(){
+           
            for(count=0; count<totalmessages; count++){
         System.out.println("the total number of messages is"+count+"of"+totalmessages+"_____");
            }
            return totalmessages;
        }
        String sentMessages(){ 
-         
+         if(messageText.length()<=250){
+            
          System.out.println("send message ");
          System.out.println("Disregard message(press0");
          System.out.println("Store message to send it later");
@@ -120,11 +150,18 @@ public class Message {
          
          return option;
        }
-       public JsonObject to JsonObject(){
-           JsonObject jo=new JsonObject();
+      
+       Gson gson=new GsonBuilder().setPrettyPrinting().create();
+       try (FileWriter writer=new FileWriter("Message")){
+           
+         System.out.println("JSON FILE CREATED SUCCESSFULLY");
+       }catch(JOException e){
+           System.out.println("error"+e.getMessage());
        }
        
 }
+       
+       
 
 
     
