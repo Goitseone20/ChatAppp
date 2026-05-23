@@ -4,7 +4,6 @@
  */
 package com.mycompany.chatappp;
 import java.util.Scanner;
-import java.util.Scanner;
 import java.util.Random;
 /**
  *
@@ -111,8 +110,14 @@ public class Message {
            }
            return totalmessages;
        }
-       String sentMessages(){
-           
+       String sentMessages(){ 
+         
+         System.out.println("send message ");
+         System.out.println("Disregard message(press0");
+         System.out.println("Store message to send it later");
+         System.out.println("Choose the following options to decide what you want to do with your message");
+         
+         return option;
        }
        
        
