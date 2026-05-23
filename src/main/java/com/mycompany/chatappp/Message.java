@@ -5,7 +5,7 @@
 package com.mycompany.chatappp;
 import java.util.Scanner;
 import java.util.Random;
-
+import org.json.simple.JSONObject;
 /**
  *
  * @author Tshireletso
@@ -121,6 +121,8 @@ public class Message {
          return option;
        }
        public JsonObject to JsonObject(){
+           JsonObject jo=new JsonObject();
+       }
        
 }
 
