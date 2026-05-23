@@ -16,9 +16,6 @@ public class Message {
    
        Scanner input= new Scanner(System.in);
        Random random=new Random();
-       
-       void Messages(){
-       
        String option;
        String Option1=null, Option2=null, Option3=null;
        int totalmessages;
@@ -26,6 +23,8 @@ public class Message {
        String recipient;
        String messageText;
        long messageID;
+       
+       void Messages(){
        
     System.out.println("Welcome to QuickChat.");
     
@@ -65,12 +64,58 @@ public class Message {
     
     System.out.println("Enter your message text");
     messageText=input.nextLine();
-    
+       }
+       long MessageID(){
     System.out.println("Enter message id");
-    long messageID=1_000_000_000L+(long)(random.nextDouble()*9000000000L)
+    long ID=1_000_000_000L+(long)Math.random()*9000000000L;
+    return ID;
+       }
     
-    
+
+       String createmessageHash(long ID, int numofmess, String message){
+           String id=Long.toString(ID);
+           String firsttwonum=id.substring(0,2);
+           
+           int firstindex=message.indexOf(" ");
+           String firstword=message.substring(0, firstindex);
+           
+           int lastindex=message.lastIndexOf(" ");
+           String lastword=message.substring(lastindex+1);
+           
+           return firsttwonum : firstword : lastword;
+           
+       }
+       boolean checkmessageID(String messageID){
+           if(messageID.length()==10){
+              System.out.println("messsageID is correctly formatted");
+           return true;
+       }
+       else{
+           System.out.println("messageID is incorrectly formatted");
+           
 }
+           return false;
+       }
+       String checkrecipientcell(String recipientcell){
+          if(recipientcell.length()==10 && recipientcell.contains(".[*//(+27\\d(9)")){
+             System.out.println("cellphone number is correctly formatted");
+          } 
+          else{
+              System.out.println("cellphone number is incorrectly formatted");
+          }
+          return recipientcell;
+       }
+       int returnTotalMessages(){
+           for(count=0; count<totalmessages; count++){
+        System.out.println("the total number of messages is"+count+"of"+totalmessages+"_____");
+           }
+           return totalmessages;
+       }
+       String sentMessages(){
+           
+       }
+       
+       
 }
 
 
