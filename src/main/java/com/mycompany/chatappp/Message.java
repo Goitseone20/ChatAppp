@@ -58,11 +58,15 @@ public class Message {
           else{
               System.out.println("Invalid option, please choose option 1-3");
           }
+    
+        boolean isRunning = false;
          
-    
-    
+    while(isRunning){
+        
     }
-    }
+}
+    
+}
 
        
     int createmessage(){
@@ -110,7 +114,7 @@ public class Message {
            int lastindex=message.lastIndexOf(" ");
            String lastword=message.substring(lastindex+1);
            
-           return firsttwonum : firstword : lastword;
+           return firsttwonum+":"+firstword+":"+lastword;
            
        }
        boolean checkmessageID(String messageID){
@@ -148,8 +152,10 @@ public class Message {
          System.out.println("Store message to send it later");
          System.out.println("Choose the following options to decide what you want to do with your message");
          
+         messageText=input.nextLine();
          return option;
        }
+       
       
        Gson gson=new GsonBuilder().setPrettyPrinting().create();
        try (FileWriter writer=new FileWriter("Message")){
