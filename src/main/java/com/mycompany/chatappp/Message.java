@@ -64,6 +64,7 @@ public class Message {
             sentMessages();
 
         }
+       
     }
 
  int createmessage(){
@@ -71,6 +72,7 @@ public class Message {
     totalmessages=input.nextInt();
        
     for(count=0; count<totalmessages; count++){
+        //for loop will loop and count the number the user wishes to send messages
         System.out.println("the total number of messages is"+count+"of"+totalmessages+"_____");
     }
     return totalmessages;
@@ -79,11 +81,14 @@ public class Message {
   }
     
     String createrecipientcell(){
+        //this methode is to create the recipient cellphone number
     System.out.println("Enter recipient cellphone number including international code and max of 10 charchters");
     recipient=input.nextLine();
     String recipientcell = null;
     checkrecipientcell(recipientcell);
+    //linked in the method to check if what was entered is correct
     return recipient;
+    // returns recipient cellphone number entered 
    
  }
     
@@ -120,6 +125,7 @@ public class Message {
            
        }
        boolean checkmessageID(String messageID){
+           //method to check if messsageID meets requirements
            if(messageID.length()==10){
               System.out.println("messsageID is correctly formatted");
            return true;
@@ -131,6 +137,7 @@ public class Message {
            return false;
        }
        String checkrecipientcell(String recipientcell){
+           //checks if the recipient cellphone number entered meets requirements
           if(recipientcell.length()==10 && recipientcell.contains(".[*//(+27\\d(9)")){
              System.out.println("cellphone number is correctly formatted");
           } 
@@ -160,7 +167,7 @@ public class Message {
          return option;
        }
        String printMessages(){
-           
+         //prints/displays messages outputted through out the prog  
            System.out.println("\n--- DETAILS ---");
            
                     System.out.println("Message ID:" + messageID);
@@ -173,22 +180,22 @@ public class Message {
                     return messageID + recipient + messageText;
        }
        
-   public static void storeMessageToJson(long id, String hash, String recipient, String text) {
+   public static void storeMessageToJson(long messageID, String messagehash, String recipient, String messageText) {
        Gson gson= new GsonBuilder().setPrettyPtrinting().create();
        try(FileWriter writer=new FileWriter("Message.json")){
    
     // 1. Manually format the data into a JSON string structure
     String jsonMessage = "{\n" +
-            "  \"id\": " + id + ",\n" +
-            "  \"hash\": \"" + hash + "\",\n" +
+            "  \"id\": " + messageID + ",\n" +
+            "  \"hash\": \"" + messagehash + "\",\n" +
             "  \"recipient\": \"" + recipient + "\",\n" +
-            "  \"message\": \"" + text + "\"\n" +
+            "  \"message\": \"" + messageText + "\"\n" +
             "}";
     try {
         FileWriter file = new FileWriter("stored_messages.json", true);
         file.write(jsonMessage + "\n,\n"); // Adds a comma and new line for the next message
         file.close();
-        System.out.println("DEBUG: Message successfully written to stored_messages.json");
+        System.out.println("DEBUG: Message successfully stored to stored_messages.json");
     } catch (IOException e) {
         System.out.println("Error saving to JSON file: " + e.getMessage());
     }
