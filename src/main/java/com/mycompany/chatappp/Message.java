@@ -29,49 +29,44 @@ public class Message {
        long messageID;
        int counter;
        
-       void Messages(){
-         
-    System.out.println("Welcome to QuickChat.");
-          
-    do{
-    System.out.println("Please select an option (1-3): ");
-    System.out.println("\n--- Main Menu ---");
-    System.out.println("Option 1) Send Messages");
-    System.out.println("Option 2) Show recently sent messages");
-    System.out.println("Option 3) Quit");
-    
-     option= Integer.toString(input.nextInt());
-   
-     
-         if(option==Option1) {
-            System.out.println("Send Message");
-          }
-          else if(option==Option2){
-              System.out.println("Coming soon");
-          }
-          else if(option==Option3){
-              System.out.println("Quit");
-          }
-          else{
-              System.out.println("Invalid option, please choose option 1-3");
-          }
-    
-        boolean isRunning = false;
-         
-    while(isRunning){
-  
-    }
-    createmessage();
-    createrecipientcell();
-    MessageID();
-    createmessageHash(ID, numofmess, message);
-    sentMessages();
-    
-    }}
-    
+    void Messages() {
 
-       
-    int createmessage(){
+        System.out.println("Welcome to QuickChat.");
+
+        do {
+            System.out.println("Please select an option (1-3): ");
+            System.out.println("\n--- Main Menu ---");
+            System.out.println("Option 1) Send Messages");
+            System.out.println("Option 2) Show recently sent messages");
+            System.out.println("Option 3) Quit");
+
+            option = Integer.toString(input.nextInt());
+
+            if (option == Option1) {
+                System.out.println("Send Message");
+            } else if (option == Option2) {
+                System.out.println("Coming soon");
+            } else if (option == Option3) {
+                System.out.println("Quit");
+            } else {
+                System.out.println("Invalid option, please choose option 1-3");
+            }
+
+            boolean isRunning = false;
+
+            while (isRunning) {
+
+            }
+            createmessage();
+            createrecipientcell();
+            MessageID();
+            createmessageHash(ID, numofmess, message);
+            sentMessages();
+
+        }
+    }
+
+ int createmessage(){
      System.out.println("How many messages do you want to enter?");
     totalmessages=input.nextInt();
        
@@ -177,15 +172,13 @@ public class Message {
                     totalmessages++; // Increment counter
                     return messageID + recipient + messageText;
        }
-
-
-      
        
-   public static void saveMessageToJson(long id, String hash, String recipient, String text) {
+   public static void storeMessageToJson(long id, String hash, String recipient, String text) {
        Gson gson= new GsonBuilder().setPrettyPtrinting().create();
+       try(FileWriter writer=new FileWriter("Message.json")){
    
     // 1. Manually format the data into a JSON string structure
-    String jsonString = "{\n" +
+    String jsonMessage = "{\n" +
             "  \"id\": " + id + ",\n" +
             "  \"hash\": \"" + hash + "\",\n" +
             "  \"recipient\": \"" + recipient + "\",\n" +
@@ -193,11 +186,12 @@ public class Message {
             "}";
     try {
         FileWriter file = new FileWriter("stored_messages.json", true);
-        file.write(jsonString + "\n,\n"); // Adds a comma and new line for the next message
+        file.write(jsonMessage + "\n,\n"); // Adds a comma and new line for the next message
         file.close();
         System.out.println("DEBUG: Message successfully written to stored_messages.json");
     } catch (IOException e) {
         System.out.println("Error saving to JSON file: " + e.getMessage());
     }
+}
 }
 }
