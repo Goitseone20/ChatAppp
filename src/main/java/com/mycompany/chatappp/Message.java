@@ -61,9 +61,12 @@ public class Message {
     while(isRunning){
   
     }
-    
-    }
-    }
+    createmessage();
+    createrecipientcell();
+    MessageID();
+    createmessageHash(ID,numofmess,message);
+    sentMessages();
+}}
     
     
 
@@ -80,9 +83,11 @@ public class Message {
     
   }
     
-    String createcellphone(){
+    String createrecipientcell(){
     System.out.println("Enter recipient cellphone number including international code and max of 10 charchters");
     recipient=input.nextLine();
+    String recipientcell = null;
+    checkrecipientcell(recipientcell);
     return recipient;
    
  }
@@ -90,6 +95,7 @@ public class Message {
     String createmessagetext(){
     System.out.println("Enter your message text");
     messageText=input.nextLine();
+    sentMessages();
     return messageText;
     
  }
@@ -99,7 +105,9 @@ public class Message {
        long MessageID(){
     System.out.println("Enter message id");
     long ID=1_000_000_000L+(long)Math.random()*9000000000L;
+   
     return ID;
+     
        }
     
 
@@ -152,21 +160,31 @@ public class Message {
          System.out.println("Choose the following options to decide what you want to do with your message");
          
          messageText=input.nextLine();
+         
+         }
          return option;
        }
-       
+
+
       
-       Gson gson=new GsonBuilder().setPrettyPrinting().create();
-       try (FileWriter writer=new FileWriter("Message")){
-           
-         System.out.println("JSON FILE CREATED SUCCESSFULLY");
-       }catch(JOException e){
-           System.out.println("error"+e.getMessage());
-       }
        
+   public static void saveMessageToJson(long id, String hash, String recipient, String text) {
+       Gson gson= new GsonBuilder().setPrettyPtrinting().create();
+   
+    // 1. Manually format the data into a JSON string structure
+    String jsonString = "{\n" +
+            "  \"id\": " + id + ",\n" +
+            "  \"hash\": \"" + hash + "\",\n" +
+            "  \"recipient\": \"" + recipient + "\",\n" +
+            "  \"message\": \"" + text + "\"\n" +
+            "}";
+    try {
+        FileWriter file = new FileWriter("stored_messages.json", true);
+        file.write(jsonString + "\n,\n"); // Adds a comma and new line for the next message
+        file.close();
+        System.out.println("DEBUG: Message successfully written to stored_messages.json");
+    } catch (IOException e) {
+        System.out.println("Error saving to JSON file: " + e.getMessage());
+    }
 }
-       
-       
-
-
-    
+}
