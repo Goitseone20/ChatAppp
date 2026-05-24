@@ -164,6 +164,19 @@ public class Message {
          }
          return option;
        }
+       String printMessages(){
+           
+           System.out.println("\n--- DETAILS ---");
+           
+                    System.out.println("Message ID:" + messageID);
+                    System.out.println("Message Hash: " );
+                    System.out.println("Recipient: " + recipient);
+                    System.out.println("Message: " + messageText);
+                    System.out.println("----------------");
+                    
+                    totalmessages++; // Increment counter
+                    return messageID + recipient + messageText;
+       }
 
 
       
