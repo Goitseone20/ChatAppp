@@ -64,9 +64,10 @@ public class Message {
     createmessage();
     createrecipientcell();
     MessageID();
-    createmessageHash(ID,numofmess,message);
+    createmessageHash(ID, numofmess, message);
     sentMessages();
-}}
+    }
+    }
     
     
 
