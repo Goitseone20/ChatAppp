@@ -66,9 +66,8 @@ public class Message {
     MessageID();
     createmessageHash(ID, numofmess, message);
     sentMessages();
-    }
-    }
     
+    }}
     
 
        
