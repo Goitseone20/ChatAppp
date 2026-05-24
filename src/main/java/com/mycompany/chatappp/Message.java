@@ -30,12 +30,9 @@ public class Message {
        int counter;
        
        void Messages(){
-       
-       
-       
+         
     System.out.println("Welcome to QuickChat.");
-           
-    
+          
     do{
     System.out.println("Please select an option (1-3): ");
     System.out.println("\n--- Main Menu ---");
@@ -62,11 +59,13 @@ public class Message {
         boolean isRunning = false;
          
     while(isRunning){
-        
+  
     }
-}
     
-}
+    }
+    }
+    
+    
 
        
     int createmessage(){
