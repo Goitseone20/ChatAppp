@@ -32,6 +32,7 @@ public class Message {
     void Messages() {
 
         System.out.println("Welcome to QuickChat.");
+           boolean isRunning = false;
 
         do {
             System.out.println("Please select an option (1-3): ");
@@ -41,31 +42,36 @@ public class Message {
             System.out.println("Option 3) Quit");
 
             option = Integer.toString(input.nextInt());
+        
+        
+        if (option.equals("1")) {
+        System.out.println("Send Message");
+        // Your future messaging loops will go inside here!
+        
+    } else if (option.equals("2")) {
+        System.out.println("Coming soon");
+        
+    } else if (option.equals("3")) {
+        System.out.println("Quit");
+        
+    } else {
+        System.out.println("Invalid option, please choose option 1-3");
+    }
 
-            if (option == Option1) {
-                System.out.println("Send Message");
-            } else if (option == Option2) {
-                System.out.println("Coming soon");
-            } else if (option == Option3) {
-                System.out.println("Quit");
-            } else {
-                System.out.println("Invalid option, please choose option 1-3");
-            }
-
-            boolean isRunning = false;
-
-            while (isRunning) {
-
-            }
-            createmessage();
+} while (!option.equals("3"));
+         
+            
+            createmessage(); 
             createrecipientcell();
             MessageID();
-            createmessageHash(ID, numofmess, message);
+            messageHash(ID, numofmess, message);
             sentMessages();
 
         }
+
+
        
-    }
+    
 
  int createmessage(){
      System.out.println("How many messages do you want to enter?");
@@ -105,13 +111,13 @@ public class Message {
        long MessageID(){
     System.out.println("Enter message id");
     long ID=1_000_000_000L+(long)Math.random()*9000000000L;
-   
+     checkmessageID(messageID);
     return ID;
-     
+    
        }
     
 
-       String createmessageHash(long ID, int numofmess, String message){
+       String messageHash(long ID, int numofmess, String message){
            String id=Long.toString(ID);
            String firsttwonum=id.substring(0,2);
            
@@ -124,9 +130,9 @@ public class Message {
            return firsttwonum+":"+firstword+":"+lastword;
            
        }
-       boolean checkmessageID(String messageID){
+       boolean checkmessageID(long messageID){
            //method to check if messsageID meets requirements
-           if(messageID.length()==10){
+           if(messageID==10){
               System.out.println("messsageID is correctly formatted");
            return true;
        }
@@ -182,7 +188,7 @@ public class Message {
        
    public static void storeMessageToJson(long messageID, String messagehash, String recipient, String messageText) {
        Gson gson= new GsonBuilder().setPrettyPtrinting().create();
-       try(FileWriter writer=new FileWriter("Message.json")){ 
+       try(FileWriter writer=new FileWriter("Message.json")){
    
     // 1. Manually format the data into a JSON string structure
     String jsonMessage = "{\n" +
