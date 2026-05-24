@@ -182,7 +182,7 @@ public class Message {
        
    public static void storeMessageToJson(long messageID, String messagehash, String recipient, String messageText) {
        Gson gson= new GsonBuilder().setPrettyPtrinting().create();
-       try(FileWriter writer=new FileWriter("Message.json")){
+       try(FileWriter writer=new FileWriter("Message.json")){ 
    
     // 1. Manually format the data into a JSON string structure
     String jsonMessage = "{\n" +
